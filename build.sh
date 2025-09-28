@@ -2,8 +2,25 @@
 
 # LilyPond Build Script
 # Compiles all .ly files in src/ directory to output/
+# Usage: ./build.sh [--no-open]
 
 set -e
+
+# Parse command line arguments
+NO_OPEN=false
+for arg in "$@"; do
+    case $arg in
+        --no-open)
+            NO_OPEN=true
+            shift
+            ;;
+        *)
+            echo "Unknown option: $arg"
+            echo "Usage: $0 [--no-open]"
+            exit 1
+            ;;
+    esac
+done
 
 # Colors for output
 RED='\033[0;31m'
@@ -54,8 +71,8 @@ done
 echo -e "${GREEN}Build complete!${NC}"
 echo "Output files are in the output/ directory"
 
-# Open generated PDFs (if 'open' command is available)
-if [ ${#generated_pdfs[@]} -gt 0 ] && command -v open &> /dev/null; then
+# Open generated PDFs (unless --no-open flag is set)
+if [ "$NO_OPEN" = false ] && [ ${#generated_pdfs[@]} -gt 0 ]; then
     echo -e "${YELLOW}Opening generated PDFs...${NC}"
     for pdf in "${generated_pdfs[@]}"; do
         open "$pdf"
