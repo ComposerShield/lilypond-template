@@ -54,8 +54,8 @@ done
 echo -e "${GREEN}Build complete!${NC}"
 echo "Output files are in the output/ directory"
 
-# Open generated PDFs
-if [ ${#generated_pdfs[@]} -gt 0 ]; then
+# Open generated PDFs (if 'open' command is available)
+if [ ${#generated_pdfs[@]} -gt 0 ] && command -v open &> /dev/null; then
     echo -e "${YELLOW}Opening generated PDFs...${NC}"
     for pdf in "${generated_pdfs[@]}"; do
         open "$pdf"
