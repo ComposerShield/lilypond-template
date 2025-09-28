@@ -1,0 +1,32 @@
+name: Build LilyPond Score
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install LilyPond
+      run: |
+        sudo apt update
+        sudo apt install -y lilypond
+        
+    - name: Verify LilyPond installation
+      run: lilypond --version
+      
+    - name: Build score
+      run: ./build.sh
+      
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: lilypond-output
+        path: output/
+        retention-days: 7
