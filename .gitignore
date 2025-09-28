@@ -1,0 +1,43 @@
+# LilyPond output files
+*.pdf
+*.ps
+*.eps
+*.png
+*.svg
+*.midi
+*.mid
+
+# Output directory (from build.sh)
+output/
+
+# LilyPond temporary files
+*.log
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Node modules (if using any build tools)
+node_modules/
+npm-debug.log*
+
+# Python cache (if using any Python scripts)
+__pycache__/
+*.pyc
+*.pyo
