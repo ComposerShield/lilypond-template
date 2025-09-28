@@ -11,6 +11,10 @@
   }
 }
 
+\paper {
+  markup-system-spacing.padding = #5
+}
+
 \score {
   \new Staff {
     \clef treble
